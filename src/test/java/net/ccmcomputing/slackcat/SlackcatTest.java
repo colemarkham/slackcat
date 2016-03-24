@@ -83,6 +83,10 @@ public class SlackcatTest extends TestCase{
       assertEquals("{\"text\":\"https://http.cat/404\"}", new Gson().toJson(Slackcat.handleMessage("Hey that's a 404")));
    }
 
+   public void testNoDuplicate(){
+      assertEquals("{}", new Gson().toJson(Slackcat.handleMessage("Have you seen https://http.cat/404?")));
+   }
+
    public void testNormalInput(){
       assertEquals("{\"text\":\"https://http.cat/404\"}", new Gson().toJson(Slackcat.handleMessage("Hey that's a 404!")));
    }
