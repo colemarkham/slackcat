@@ -5,6 +5,7 @@ import static spark.Spark.port;
 import static spark.Spark.post;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,6 +21,14 @@ public class Slackcat{
                   450, 451, 500, 502, 503, 506, 507, 508, 509, 599};
    private static final Pattern PATTERN = Pattern.compile("(?<![0-9,.$])(?<!http.cat/)[1-5]\\d{2}(?![0-9,.$])");
 
+   private static boolean isWhitelistedUser(String user){
+      List<String> patterns = getWhitelistPatterns();
+      for(String pattern: patterns){
+         if(Pattern.matches(pattern, user)) return true;
+      }
+      return false;
+   }
+
    static int getHerokuAssignedPort(){
       ProcessBuilder processBuilder = new ProcessBuilder();
       if(processBuilder.environment().get("PORT") != null) return Integer.parseInt(processBuilder.environment().get("PORT"));
@@ -27,7 +36,15 @@ public class Slackcat{
                    // localhost)
    }
 
-   public static SlackMessage handleMessage(String incomingText){
+   static List<String> getWhitelistPatterns(){
+      ProcessBuilder processBuilder = new ProcessBuilder();
+      String string = processBuilder.environment().get("WHITELIST_PATTERNS");
+      List<String> patterns = Arrays.asList(string.split(","));
+      return patterns;
+   }
+
+   public static SlackMessage handleMessage(String user, String incomingText){
+      if(isWhitelistedUser(user)) return new SlackMessage(null);
       Matcher matcher = PATTERN.matcher(incomingText);
       if(matcher.find()) {
          String match = matcher.group();
@@ -45,7 +62,7 @@ public class Slackcat{
       Gson gson = new Gson();
       port(getHerokuAssignedPort());
       get("/", (req, res) -> "This is a webhook. See https://github.com/colemarkham/slackcat for details.");
-      post("/", (req, res) -> handleMessage(req.queryParams("text")), gson::toJson);
+      post("/", (req, res) -> handleMessage(req.queryParams("user_name"), req.queryParams("text")), gson::toJson);
    }
 
    public static class SlackMessage{

@@ -60,38 +60,38 @@ public class SlackcatTest extends TestCase{
    // }
 
    public void testBegining(){
-      assertEquals("{\"text\":\"https://http.cat/404\"}", new Gson().toJson(Slackcat.handleMessage("404 me!")));
+      assertEquals("{\"text\":\"https://http.cat/404\"}", new Gson().toJson(Slackcat.handleMessage("404you", "404 me!")));
    }
 
    public void testBigNumber(){
-      assertEquals("{}", new Gson().toJson(Slackcat.handleMessage("Give me 1000000 dollars!")));
+      assertEquals("{}", new Gson().toJson(Slackcat.handleMessage("joe", "Give me 1000000 dollars!")));
    }
 
    public void testCommas(){
-      assertEquals("{}", new Gson().toJson(Slackcat.handleMessage("Give me 100,000 dollars!")));
+      assertEquals("{}", new Gson().toJson(Slackcat.handleMessage("jim", "Give me 100,000 dollars!")));
    }
 
    public void testDecimal(){
-      assertEquals("{}", new Gson().toJson(Slackcat.handleMessage("Give me 100.00 dollars!")));
+      assertEquals("{}", new Gson().toJson(Slackcat.handleMessage("bob", "Give me 100.00 dollars!")));
    }
 
    public void testEmptyInput(){
-      assertEquals("{}", new Gson().toJson(Slackcat.handleMessage("")));
+      assertEquals("{}", new Gson().toJson(Slackcat.handleMessage("", "")));
    }
 
    public void testEnd(){
-      assertEquals("{\"text\":\"https://http.cat/404\"}", new Gson().toJson(Slackcat.handleMessage("Hey that's a 404")));
+      assertEquals("{\"text\":\"https://http.cat/404\"}", new Gson().toJson(Slackcat.handleMessage("end", "Hey that's a 404")));
    }
 
    public void testNoDuplicate(){
-      assertEquals("{}", new Gson().toJson(Slackcat.handleMessage("Have you seen https://http.cat/404?")));
+      assertEquals("{}", new Gson().toJson(Slackcat.handleMessage("dup", "Have you seen https://http.cat/404?")));
    }
 
    public void testNormalInput(){
-      assertEquals("{\"text\":\"https://http.cat/404\"}", new Gson().toJson(Slackcat.handleMessage("Hey that's a 404!")));
+      assertEquals("{\"text\":\"https://http.cat/404\"}", new Gson().toJson(Slackcat.handleMessage("norm", "Hey that's a 404!")));
    }
 
    public void testStandalone(){
-      assertEquals("{\"text\":\"https://http.cat/404\"}", new Gson().toJson(Slackcat.handleMessage("You got a 404 request!")));
+      assertEquals("{\"text\":\"https://http.cat/404\"}", new Gson().toJson(Slackcat.handleMessage("stan", "You got a 404 request!")));
    }
 }
