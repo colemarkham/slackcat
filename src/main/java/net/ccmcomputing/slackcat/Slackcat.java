@@ -5,6 +5,7 @@ import static spark.Spark.port;
 import static spark.Spark.post;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -39,6 +40,7 @@ public class Slackcat{
    static List<String> getWhitelistPatterns(){
       ProcessBuilder processBuilder = new ProcessBuilder();
       String string = processBuilder.environment().get("WHITELIST_PATTERNS");
+      if(string == null) return Collections.emptyList();
       List<String> patterns = Arrays.asList(string.split(","));
       return patterns;
    }
