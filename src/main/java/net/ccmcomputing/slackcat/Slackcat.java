@@ -20,7 +20,7 @@ import com.google.gson.Gson;
 public class Slackcat{
    public static final int[] HTTP_CAT_CODES = {100, 101, 200, 201, 202, 204, 206, 207, 300, 301, 302, 303, 304, 305, 307, 400, 401, 402, 403, 404, 405, 406, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 422, 423, 424, 425, 426, 429, 431, 444,
                   450, 451, 500, 502, 503, 506, 507, 508, 509, 599};
-   private static final Pattern PATTERN = Pattern.compile("(?:\\s|^)(?<!http.cat/)[1-5]\\d{2}(?:\\s|$)");
+   private static final Pattern PATTERN = Pattern.compile("(?<=\\s|^)[1-5]\\d{2}(?=[.!;:?]?(?:\\s|$))");
 
    private static boolean isWhitelistedUser(String user){
       List<String> patterns = getWhitelistPatterns();
