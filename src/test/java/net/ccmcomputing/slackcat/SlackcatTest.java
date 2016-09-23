@@ -47,7 +47,7 @@ public class SlackcatTest extends TestCase{
    // HttpHead request = new HttpHead("https://http.cat/" + code);
    // try (CloseableHttpResponse response = httpClient.execute(request)){
    // int statusCode = response.getStatusLine().getStatusCode();
-   // if(Arrays.binarySearch(Slackcat.HTTP_CAT_CODES, code) >= 0) {
+   // if(Arrays.binarySearch(Slackcat.HTTP_CAT_CODES, code) >= 0){
    // assertTrue("Status code has no cat: " + code, statusCode == 200);
    // }else{
    // assertFalse("Missing status code that has a cat: " + code, statusCode ==
