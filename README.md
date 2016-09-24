@@ -1,9 +1,6 @@
 # slackcat
 A Slack webhook for injecting cat images from http.cat in response to status codes in messages.
 
-# slackcat
-A Slack webhook for injecting cat images from http.cat in response to status codes in messages.
-
 https://youtu.be/2u1oC6SUzCM
 
 # Installation
