@@ -26,7 +26,7 @@ public class Slackcat{
                      411, 412, 413, 414, 415, 416, 417, 418,
                      420, 421, 422, 423, 424, 425, 426, 429,
                      431, 444, 450, 451,
-                  500, 502, 503, 504, 506, 507, 508, 509, 511, 599};
+                  500, 502, 503, 504, 506, 507, 508, 509, 510, 511, 599};
    private static final Pattern PATTERN = Pattern.compile("(?<=\\s|^)[1-5]\\d{2}(?=[.!;:?]?(?:\\s|$))");
 
    private static boolean isWhitelistedUser(String user){
