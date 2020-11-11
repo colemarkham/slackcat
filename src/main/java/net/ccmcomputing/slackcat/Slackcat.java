@@ -19,7 +19,7 @@ import com.google.gson.Gson;
  */
 public class Slackcat{
    public static final int[] HTTP_CAT_CODES = {
-                  100, 101,
+                  100, 101, 102,
                   200, 201, 202, 204, 206, 207,
                   300, 301, 302, 303, 304, 305, 307,
                   400, 401, 402, 403, 404, 405, 406, 408, 409,
